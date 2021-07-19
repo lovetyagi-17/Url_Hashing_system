@@ -1,0 +1,8 @@
+{
+    "PORT": 3082,
+    "DB_URL": "mongodb://localhost:27017/utm",
+    "JWT_OPTIONS": {
+        "SECRET_KEY": "Lr-x9g5-Rq-yB6NNcTKlVQ.ZvRscU8PgFGNIRJhg16i1y6CpyxaiMeGzeQzcFoxaCs",
+        "EXPIRES_IN": "1d"
+    }
+}

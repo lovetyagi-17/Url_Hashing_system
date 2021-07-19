@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>API Monitoring Service</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        td {
+            word-wrap: break-word
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="padding: 50px">
+        <h2>Monitoring Service</h2>
+        <table class="table" id="monitoring">
+            <thead>
+                <tr>
+                    <th style="width:5%">S.No.</th>
+                    <th style="width:10%">Route</th>
+                    <th style="width:5%"> Method</th>
+                    <th style="width:5%">Code</th>
+                    <th style="width:5%">Time</th>
+                    <th style="width:20%">Body</th>
+                    <th style="width:10%">Query</th>
+                    <th style="width:10%">Params</th>
+                    <th style="width:10%">Message</th>
+                    <th style="width:20%">response</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                <% for(var i=0; i < data.length; i++) { %>
+                    <tr class="<%= data[i].error ? 'danger' : 'success' %>">
+                        <td style="width:5%">
+                            <%= i+1 %>
+                        </td>
+                        <td style="width:10%">
+                            <%= data[i].url %>
+                        </td>
+                        <td style="width:5%">
+                            <%= data[i].method %>
+                        </td>
+                        <td style="width:5%">
+                            <%= data[i].code %>
+                        </td>
+                        <td style="width:5%">
+                            <%= data[i].resTime %>
+                        </td>
+                        <td style="width:20%">
+                            <%= data[i].body %>
+                        </td>
+                        <td style="width:10%">
+                            <%= data[i].query %>
+                        </td>
+                        <td style="width:10%">
+                            <%= data[i].params %>
+                        </td>
+                        <td style="width:10%">
+                            <%= data[i].message %>
+                        </td>
+                        <td style="width:20%">
+                            <%= data[i].res %>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(function () {
+        var socket = io({
+            query: { type: "monitoring" }
+        });
+        socket.on("getLog", function (data) {
+            var row = "";
+            row += `<tr class=${data.error ? 'danger' : 'success'}>
+                <td style="width:5%">
+                   1
+                        </td>
+                <td  style="width:10%">
+                    ${data.url}
+                        </td>
+                <td  style="width:5%">
+                    ${data.method}
+                        </td>
+                <td  style="width:5%">
+                     ${data.code}
+                        </td>
+                <td  style="width:5%">
+                     ${data.resTime}
+                        </td>
+                <td  style="width:20%">
+                     ${data.body}
+                        </td>
+                <td  style="width:10%">
+                    ${data.query}
+                        </td>
+                <td  style="width:10%">
+                      ${data.params}
+                        </td>
+                <td  style="width:10%">
+                     ${data.message}
+                        </td>
+                <td  style="width:20%">
+                     ${data.res}
+                        </td>
+            </tr>`
+            var html = row + document.getElementById("myTable").innerHTML;
+            document.getElementById("myTable").innerHTML = html;
+            var table = document.getElementById("monitoring");
+            var rowCount = table.rows.length;
+            if (rowCount > 10) table.deleteRow(rowCount - 1);
+            for (const x in table.rows) {
+                if (x != 0) table.rows[x].cells[0].innerText = x
+            }
+        });
+    });
+</script>
+
+</html>

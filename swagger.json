@@ -1,0 +1,306 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "UTM Project",
+        "description": "",
+        "termsOfService": "http://api_url/terms/",
+        "contact": {
+            "name": "Love Tyagi",
+            "email": "tyagi@chicmic.co.in",
+            "url": "https://www.wolox.com.ar/"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3082/",
+            "description": "LocalHost server"
+        },
+        {
+            "url": "http://api.fincogrp.com:3082/",
+            "description": "Live server"
+        }
+    ],
+    "tags": [
+        "admin",
+        "user"
+    ],
+    "paths": {
+        "/api/v1/admin/signup": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "API to add User Account",
+                "description": "API to add User Account",
+                "operationId": "adminvalidateSignup",
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$",
+                                        "description": "Email of User"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password of User Account"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "example": {
+                                "email": "gs593513@gmail.com",
+                                "password": "234567890"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/login": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "API to Login",
+                "description": "API to Login",
+                "operationId": "adminvalidateLogin",
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$",
+                                        "description": "Email of User"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password of Admin Account"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "example": {
+                                "email": "gs593513@gmail.com",
+                                "password": "234567890"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/utm": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "API to Create shortUrl",
+                "description": "API to Create shortUrl",
+                "operationId": "adminvalidateCreateUrl",
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "security": [
+                    {
+                        "adminAuthorization": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "description": "url"
+                                    }
+                                },
+                                "required": [
+                                    "url"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "example": {
+                                "url": "https://google.com"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/utms": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "security": [
+                    {
+                        "adminAuthorization": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/signup": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "API to add User Account",
+                "description": "API to add User Account",
+                "operationId": "uservalidateSignup",
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$",
+                                        "description": "Email of User"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password of User Account"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "example": {
+                                "email": "gs593513@gmail.com",
+                                "password": "234567890"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "API to Login",
+                "description": "API to Login",
+                "operationId": "uservalidateLogin",
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$",
+                                        "description": "Email of User"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password of User Account"
+                                    }
+                                },
+                                "required": [
+                                    "password"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "example": {
+                                "email": "gs593513@gmail.com",
+                                "password": "234567890"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/utm": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                }
+            }
+        },
+        "/api/v1/user/utm/redirect": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Response"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "adminAuthorization": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            },
+            "userAuthorization": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

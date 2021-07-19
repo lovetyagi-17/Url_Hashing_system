@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        text-align: center;
+        padding: 40px 0;
+        background: #fff;
+    }
+
+    h1 {
+        color: #88B04B;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    i {
+        color: #9ABC66;
+        font-size: 5rem !important;
+        /*line-height: 200px;*/
+        /*margin-left:-15px;*/
+    }
+
+    .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 1px 15px 2px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+        border: none !important;
+    }
+</style>
+
+<body>
+    <div class="card">
+        <div>
+            <i class="fa fa-lock"></i>
+        </div>
+        <hr>
+        <form action="<%- data.checkLink %>" method="post">
+            <div class="form-group">
+                <input type="text" placeholder="Email" name="email" id="email" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" minlength="8" name="password" maxlength="25" id="password"
+                    class="form-control" required />
+            </div>
+            <div class="form-group">
+                <input type="text" class="d-none" name="code" value="<%- data.code%>">
+                <button class="btn btn-success w-100" type="submit">Open Link</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
